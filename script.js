@@ -15,3 +15,52 @@ const cosTaula = document.getElementById("cosTaula");
 
 // Creo un array vacío para ir guardando los alumnos como objetos
 let alumnes = [];
+
+// Esta función sirve para validar los datos que el usuario escribe
+function validarFormulario(event) {
+    event.preventDefault(); // Aqui evito que la página se recargue al enviar
+
+    // Limpio mensajes previos
+    missatge.innerHTML = "";
+    missatge.className = "";
+
+    // aqui Leo los datos de los inputs para poder calcular la nota final
+    const nom = inputNom.value.trim();
+    const examen = parseFloat(inputExamen.value);
+    const practiques = parseFloat(inputPractiques.value);
+    const actitud = parseFloat(inputActitud.value);
+
+    // Aui Reviso que el nombre no esté vacío
+    if (nom === "") {
+        missatge.innerHTML = "Pon el nombre del alumno.";
+        missatge.className = "error";
+        return false; // si el nombre esta vacio paro la funcion aquí porque hay error
+    }
+
+    // Aqui Reviso que las notas sean números entre 0 y 10
+    if (isNaN(examen) || examen < 0 || examen > 10) {
+        missatge.innerHTML = "La nota del examen debe ser de 0 a 10.";
+        missatge.className = "error";
+        return false;
+    }
+
+    // Aqui Reviso que las practicas sean números entre 0 y 10
+    if (isNaN(practiques) || practiques < 0 || practiques > 10) {
+        missatge.innerHTML = "La nota de prácticas debe ser de 0 a 10.";
+        missatge.className = "error";
+        return false;
+    }
+
+    // Aqui Reviso que la actitud sean números entre 0 y 10
+    if (isNaN(actitud) || actitud < 0 || actitud > 10) {
+        missatge.innerHTML = "La nota de actitud debe ser de 0 a 10.";
+        missatge.className = "error";
+        return false;
+    }
+
+    // Si todo está bien, devolvemos true
+    return true;
+}
+
+// Conecto la función al enviar el formulario
+formulari.addEventListener("submit", validarFormulario);

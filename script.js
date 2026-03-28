@@ -77,7 +77,7 @@ function calcularNotaFinal(examen, practiques, actitud) {
     const notaRedondeada = parseFloat(nota.toFixed(2));
 
     // aqui creo la variable estado y aqui verificamos si el alumno esta aprovado o suspenso
-    const estado = notaRedondeada >= 5 ? "Aprovado" : "Suspenso";
+    const estado = notaRedondeada >= 5 ? "Aprovat" : "Suspès";
 
     // aqui devuelvo la nota final ya redondeada y el estado como un objeto 
     return { notaFinal: notaRedondeada, estado: estado };
@@ -119,4 +119,25 @@ function agregarAlumno() {
     // Aqui mustro un mensaje de éxito para que el usuario sepa que se agrego correctamente
     missatge.innerHTML = "Alumno agregado correctamente (0_0)";
     missatge.className = "correcte"; // Le pongo la clase para que se vea en verde
+}
+
+function mostrarAlumnes() {
+    // Primero limpio el contenido de la tabla para que no se repitan los alumnos
+    cosTaula.innerHTML = "";
+
+    // Recorro todos los alumnos que están guardados en el array `alumnes`
+    alumnes.forEach(function(alumne) {
+        // Por cada alumno creo una fila HTML concatenando con +
+        var fila = "<tr>" +
+                      "<td>" + alumne.nom + "</td>" +
+                      "<td>" + alumne.examen.toFixed(2) + "</td>" +
+                      "<td>" + alumne.practiques.toFixed(2) + "</td>" +
+                      "<td>" + alumne.actitud.toFixed(2) + "</td>" +
+                      "<td>" + alumne.notaFinal.toFixed(2) + "</td>" +
+                      "<td class='" + (alumne.estat === "Aprovat" ? "aprovat" : "suspes") + "'>" + alumne.estat + "</td>" +
+                  "</tr>";
+
+        // Inserto la fila en el cuerpo de la tabla
+        cosTaula.innerHTML += fila;
+    });
 }

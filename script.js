@@ -82,3 +82,41 @@ function calcularNotaFinal(examen, practiques, actitud) {
     // aqui devuelvo la nota final ya redondeada y el estado como un objeto 
     return { notaFinal: notaRedondeada, estado: estado };
 }
+
+// Creo la función para agregar un alumno al array y mostrarlo en la tabla
+function agregarAlumno() {
+    // Primero leo los datos de los inputs
+    const nom = inputNom.value.trim(); // .trim() elimina espacios al principio y al final
+    const examen = parseFloat(inputExamen.value);
+    const practiques = parseFloat(inputPractiques.value);
+    const actitud = parseFloat(inputActitud.value);
+
+    // Calculo la nota final y el estado usando la función que ya creamos
+    const resultat = calcularNotaFinal(examen, practiques, actitud);
+
+    // Creo un objeto alumno con todos los datos
+    const alumne = {
+        nom: nom,
+        examen: examen,
+        practiques: practiques,
+        actitud: actitud,
+        notaFinal: resultat.notaFinal,
+        estat: resultat.estado
+    };
+
+    // Agrego al alumno al array que guarda todos los alumnos
+    alumnes.push(alumne); // El array que dejamos vacio arriba 
+
+    // Llamo a la función que muestra todos los alumnos en la tabla HTML
+    mostrarAlumnes();
+
+    // Limpio los inputs para poder agregar otro alumno facilmente
+    inputNom.value = "";
+    inputExamen.value = "";
+    inputPractiques.value = "";
+    inputActitud.value = "";
+
+    // Aqui mustro un mensaje de éxito para que el usuario sepa que se agrego correctamente
+    missatge.innerHTML = "Alumno agregado correctamente (0_0)";
+    missatge.className = "correcte"; // Le pongo la clase para que se vea en verde
+}

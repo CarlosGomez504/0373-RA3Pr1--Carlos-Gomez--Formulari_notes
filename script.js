@@ -64,3 +64,21 @@ function validarFormulario(event) {
 
 // Conecto la función al enviar el formulario
 formulari.addEventListener("submit", validarFormulario);
+
+//Creo una nueva funcion llamada calcularNotaFinal
+function calcularNotaFinal(examen, practiques, actitud) {
+
+    // Aqui aplico la formula donde aqui vamos a utilizar los datos que el usuario a digitado y estan almacenados en los inputs
+    const nota = examen * 0.6 + practiques * 0.3 + actitud * 0.1;
+    /* 
+       Creo una nueva varuable llamada notaRedondeada para que cuando salga el resultado (nota) vamos a redondeamos el resultado para que 
+       el que nos muestre un resultado final pero solo con (2 decimales)
+    */
+    const notaRedondeada = parseFloat(nota.toFixed(2));
+
+    // aqui creo la variable estado y aqui verificamos si el alumno esta aprovado o suspenso
+    const estado = notaRedondeada >= 5 ? "Aprovado" : "Suspenso";
+
+    // aqui devuelvo la nota final ya redondeada y el estado como un objeto 
+    return { notaFinal: notaRedondeada, estado: estado };
+}

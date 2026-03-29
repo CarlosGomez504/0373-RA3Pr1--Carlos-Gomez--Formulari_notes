@@ -63,7 +63,11 @@ function validarFormulario(event) {
 }
 
 // Conecto la función al enviar el formulario
-formulari.addEventListener("submit", validarFormulario);
+formulari.addEventListener("submit", function(event) {
+    if (validarFormulario(event)) {
+        agregarAlumno();
+    }
+});
 
 //Creo una nueva funcion llamada calcularNotaFinal
 function calcularNotaFinal(examen, practiques, actitud) {
@@ -134,7 +138,7 @@ function mostrarAlumnes() {
                       "<td>" + alumne.practiques.toFixed(2) + "</td>" +
                       "<td>" + alumne.actitud.toFixed(2) + "</td>" +
                       "<td>" + alumne.notaFinal.toFixed(2) + "</td>" +
-                      "<td class='" + (alumne.estat === "Aprovat" ? "aprovat" : "suspes") + "'>" + alumne.estat + "</td>" +
+                      "<td class='" + (alumne.estat === "Aprovat" ? "aprovat" : "suspes") + "'>" + alumne.estat + "</td>"
                   "</tr>";
 
         // Inserto la fila en el cuerpo de la tabla

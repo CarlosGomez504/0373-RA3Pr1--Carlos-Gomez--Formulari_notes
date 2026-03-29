@@ -138,7 +138,7 @@ function mostrarAlumnes() {
                       "<td>" + alumne.practiques.toFixed(2) + "</td>" +
                       "<td>" + alumne.actitud.toFixed(2) + "</td>" +
                       "<td>" + alumne.notaFinal.toFixed(2) + "</td>" +
-                      "<td class='" + (alumne.estat === "Aprovat" ? "aprovat" : "suspes") + "'>" + alumne.estat + "</td>"
+                      "<td class='" + (alumne.estat === "Aprovat" ? "aprovat" : "suspes") + "'>" + alumne.estat + "</td>" +
                   "</tr>";
 
         // Inserto la fila en el cuerpo de la tabla
@@ -164,3 +164,12 @@ function ordenarAlumnes(deMajorAMenor) {
     // Vuelvo a mostrar la tabla para que se vea el nuevo orden
     mostrarAlumnes();
 }
+
+// Event listeners para los botones de ordenar
+document.getElementById("ordenarAsc").addEventListener("click", function() {
+    ordenarAlumnes(false); // Ordenar de menor a mayor
+});
+
+document.getElementById("ordenarDesc").addEventListener("click", function() {
+    ordenarAlumnes(true); // Ordenar de mayor a menor
+});

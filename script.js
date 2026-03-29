@@ -141,3 +141,22 @@ function mostrarAlumnes() {
         cosTaula.innerHTML += fila;
     });
 }
+
+// Esta función sirve para ordenar los alumnos por su nota final
+function ordenarAlumnes(deMajorAMenor) {
+
+    // Uso sort() para ordenar el array de alumnos
+    alumnes.sort(function(a, b) {
+
+        // Si deMajorAMenor es true ordena de mayor a menor
+        if (deMajorAMenor) {
+            return b.notaFinal - a.notaFinal;
+        } else {
+            // Si es false ordena de menor a mayor
+            return a.notaFinal - b.notaFinal;
+        }
+    });
+
+    // Vuelvo a mostrar la tabla para que se vea el nuevo orden
+    mostrarAlumnes();
+}
